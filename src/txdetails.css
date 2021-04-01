@@ -1,0 +1,75 @@
+.body {
+}
+
+.main {
+  margin-top: 100px;
+  margin-left: 10px;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  background-color: #223d61;
+  font-family: Helvetica;
+  font-size: 12px;
+  width: 40%;
+  font-weight: 10px;
+}
+
+.block-number {
+  margin-top: -8px;
+}
+
+.label {
+  color: white;
+}
+
+.ok {
+  width: 10px;
+  margin-left: 5px;
+}
+
+.question {
+  width: 12px;
+  padding-bottom: 2px;
+  margin-right: 5px;
+}
+
+.txd-row {
+  display: flex;
+  margin-top: -5px;
+}
+
+.status-row {
+  margin-bottom: -20px;
+}
+
+.hash {
+  margin-left: 2px;
+  color: white;
+  margin-top: -7px;
+}
+
+.from {
+  color: white;
+  margin-top: -7px;
+  margin-left: 2px;
+}
+
+.time {
+  color: white;
+  margin-top: -5px;
+}
+
+.time-row {
+  margin-top: -20px;
+}
+
+.status {
+  background-color: rgba(0, 201, 167, 0.1);
+  margin-top: 12px;
+  margin-left: 2px;
+  color: #00c9a7;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  height: 15px;
+}
