@@ -15,7 +15,8 @@
 }
 
 .block-number {
-  margin-top: -8px;
+  margin-top: -6px;
+  font-size: 12px;
 }
 
 .label {
@@ -33,16 +34,30 @@
   margin-right: 5px;
 }
 
+.value {
+  color: white;
+}
+
+.hl {
+  background-color: #2b4e79;
+  width: 97%;
+  height: 1.5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .txd-row {
   display: flex;
-  margin-top: -5px;
+  margin-top: -8px;
+  margin-bottom: -10px;
 }
 
 .status-row {
-  margin-bottom: -20px;
+  margin-bottom: -6px;
 }
 
 .hash {
+  padding-bottom: ;
   margin-left: 2px;
   color: white;
   margin-top: -7px;
@@ -50,8 +65,9 @@
 
 .from {
   color: white;
-  margin-top: -7px;
-  margin-left: 2px;
+  margin-top: -8px;
+  margin-left: 1px;
+  padding-bottom: 10px;
 }
 
 .time {
@@ -60,7 +76,7 @@
 }
 
 .time-row {
-  margin-top: -20px;
+  margin-top: -8px;
 }
 
 .status {

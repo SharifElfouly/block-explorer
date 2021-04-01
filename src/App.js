@@ -3,6 +3,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import "./App.css";
 import TX from "./TX";
 import Block from "./Block";
+import TXDetails from "./TXDetails";
 
 const tx = {
   volume: 10.0,
@@ -28,21 +29,26 @@ const HASH_LENGTH = 18;
 
 class App extends Component {
   render() {
-    return (
-      <div>
-        <div class="topp"></div>
+    const numbers = [...Array(2).keys()];
+    const items = [];
+
+    for (const [index, value] of numbers.entries()) {
+      items.push(
         <TX
           hash={tx.hash.substring(0, HASH_LENGTH)}
           fr={tx.hash.substring(0, HASH_LENGTH)}
           to={tx.hash.substring(0, HASH_LENGTH)}
           value={300}
         />
-        <Block
-          number={tx.number}
-          miner={tx.root.substr(0, HASH_LENGTH)}
-          nTxs={tx.number}
-          volume={tx.sz}
-        />
+      );
+    }
+    return (
+      <div>
+        {items}
+        <div class="det">
+          <TXDetails />
+          <TXDetails />
+        </div>
       </div>
     );
   }
