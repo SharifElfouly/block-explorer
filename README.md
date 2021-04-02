@@ -1,4 +1,5 @@
 # Block Explorer
+> Design inspired by [etherscan.io](etherscan.io/)
 
 Explore the blockchain that you can build yourself [from-scratch](https://github.com/SharifElfouly/blockchain-from-scratch/).
 
