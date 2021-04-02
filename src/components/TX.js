@@ -1,6 +1,6 @@
 //import React from "react";
 import React, { Component } from "react";
-import "./tx.css";
+import "../styles/tx.css";
 
 class TX extends Component {
   render() {

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import "./App.css";
+import "../styles/app.css";
 import TX from "./TX";
 import Block from "./Block";
 import TXDetails from "./TXDetails";

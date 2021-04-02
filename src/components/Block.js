@@ -1,6 +1,6 @@
 //import React from "react";
 import React, { Component } from "react";
-import "./block.css";
+import "../styles/block.css";
 
 class Block extends Component {
   render() {

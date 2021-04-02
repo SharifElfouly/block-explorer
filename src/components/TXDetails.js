@@ -1,8 +1,8 @@
 //import React from "react";
 import React, { Component } from "react";
-import question from "./question.svg";
-import ok from "./checkOk.svg";
-import "./txdetails.css";
+import question from "../svgs/question.svg";
+import ok from "../svgs/checkOk.svg";
+import "../styles/txdetails.css";
 
 class TXDetails extends Component {
   render() {
