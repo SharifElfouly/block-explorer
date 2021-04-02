@@ -19,9 +19,19 @@ class BlockDetails extends Component {
       });
   }
   render() {
-    console.log(this.state.block);
+    var isMined = this.state.block.mined;
     return (
       <div class="bd">
+        <div class="bd-row">
+          <div class="bd-row-title">
+            <img class="bd-row-title-question" src={question} />
+            <div class="bd-row-title-label">Hash:</div>
+          </div>
+          <div class="bd-row-content" id="bd-row-content-hash">
+            {this.state.block.hash}
+          </div>
+        </div>
+        <div class="bd-row-divider"></div>
         <div class="bd-row">
           <div class="bd-row-title">
             <img class="bd-row-title-question" src={question} />
@@ -29,6 +39,17 @@ class BlockDetails extends Component {
           </div>
           <div class="bd-row-content" id="bd-row-content-height">
             {this.state.block.number}
+          </div>
+        </div>
+        <div class="bd-row-divider"></div>
+
+        <div class="bd-row">
+          <div class="bd-row-title">
+            <img class="bd-row-title-question" src={question} />
+            <div class="bd-row-title-label">Tx Root:</div>
+          </div>
+          <div class="bd-row-content" id="bd-row-content-hash">
+            {this.state.block.root}
           </div>
         </div>
         <div class="bd-row-divider"></div>
@@ -53,58 +74,47 @@ class BlockDetails extends Component {
         <div class="bd-row">
           <div class="bd-row-title">
             <img class="bd-row-title-question" src={question} />
-            <div class="bd-row-title-label">Mined by:</div>
+            <div class="bd-row-title-label">Is Mined:</div>
           </div>
           <div class="bd-row-content" id="bd-row-content-hash">
-            false
+            {isMined ? (
+              <div class="bd-isMined-true">true</div>
+            ) : (
+              <div class="bd-isMined-false">false</div>
+            )}
           </div>
         </div>
-        <div class="bd-row-divider"></div>
-        <div class="bd-row">
-          <div class="bd-row-title">
-            <img class="bd-row-title-question" src={question} />
-            <div class="bd-row-title-label">Block Reward:</div>
+
+        {isMined && (
+          <div>
+            <div class="bd-row-divider"></div>
+            <div class="bd-row">
+              <div class="bd-row-title">
+                <img class="bd-row-title-question" src={question} />
+                <div class="bd-row-title-label">Block Reward:</div>
+              </div>
+              <div class="bd-row-content">3.92947386687227019 Ether</div>
+            </div>
+            <div class="bd-row-divider"></div>
+            <div class="bd-row">
+              <div class="bd-row-title">
+                <img class="bd-row-title-question" src={question} />
+                <div class="bd-row-title-label">Size:</div>
+              </div>
+              <div class="bd-row-content">{this.state.block.sz} Bytes</div>
+            </div>
+            <div class="bd-row-divider"></div>
+            <div class="bd-row">
+              <div class="bd-row-title">
+                <img class="bd-row-title-question" src={question} />
+                <div class="bd-row-title-label">Difficulty:</div>
+              </div>
+              <div class="bd-row-content" id="bd-row-content-hash">
+                2
+              </div>
+            </div>
           </div>
-          <div class="bd-row-content">3.92947386687227019 Ether</div>
-        </div>
-        <div class="bd-row-divider"></div>
-        <div class="bd-row">
-          <div class="bd-row-title">
-            <img class="bd-row-title-question" src={question} />
-            <div class="bd-row-title-label">Size:</div>
-          </div>
-          <div class="bd-row-content">{this.state.block.sz} Bytes</div>
-        </div>
-        <div class="bd-row-divider"></div>
-        <div class="bd-row">
-          <div class="bd-row-title">
-            <img class="bd-row-title-question" src={question} />
-            <div class="bd-row-title-label">Difficulty:</div>
-          </div>
-          <div class="bd-row-content" id="bd-row-content-hash">
-            2
-          </div>
-        </div>
-        <div class="bd-row-divider"></div>
-        <div class="bd-row">
-          <div class="bd-row-title">
-            <img class="bd-row-title-question" src={question} />
-            <div class="bd-row-title-label">Hash:</div>
-          </div>
-          <div class="bd-row-content" id="bd-row-content-hash">
-            {this.state.block.hash}
-          </div>
-        </div>
-        <div class="bd-row-divider"></div>
-        <div class="bd-row">
-          <div class="bd-row-title">
-            <img class="bd-row-title-question" src={question} />
-            <div class="bd-row-title-label">Tx Root:</div>
-          </div>
-          <div class="bd-row-content" id="bd-row-content-hash">
-            {this.state.block.root}
-          </div>
-        </div>
+        )}
       </div>
     );
   }

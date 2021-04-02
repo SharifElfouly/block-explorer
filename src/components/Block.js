@@ -28,7 +28,7 @@ class Block extends Component {
             <h4 class="block-miner">
               <small>Hash </small>
               <Link to={"/blocks/" + this.props.hash} class="block-hash">
-                {String(this.props.hash).substring(0, 14)}
+                {String(this.props.hash).substring(0, 14) + "..."}
               </Link>
             </h4>
             <h4 class="block-txs">

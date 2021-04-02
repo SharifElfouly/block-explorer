@@ -50,7 +50,7 @@ class App extends Component {
 
     return (
       <Router>
-        <div>
+        <div class="main-content">
           <Switch>
             <Route path="/" exact>
               <div class="main-lists">

@@ -2,9 +2,9 @@
   margin-top: 10px;
   margin-left: 5px;
   padding-top: 10px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   height: 400px;
-  width: 400px;
+  width: 450px;
   background-color: #223d61;
 }
 
@@ -59,4 +59,22 @@
 
 .block-hash:hover {
   color: #407192;
+}
+
+.bd-isMined-false {
+  color: #db190b;
+  background-color: #f1d6d4;
+  width: 25px;
+  padding-right: 2px;
+  padding-left: 2px;
+  border-radius: 10%;
+}
+
+.bd-isMined-true {
+  color: #008000;
+  background-color: #e6ffe6;
+  padding-right: 1px;
+  padding-left: 2px;
+  width: 23px;
+  border-radius: 10%;
 }
