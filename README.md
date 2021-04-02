@@ -8,6 +8,10 @@ Simple react components for looking at blocks and their transactions.
 
 ![Screenshot](images/block.png)
 
+##### Details
+
+![Screenshot](images/block-details.png)
+
 #### Transaction
 
 ![Screenshot](images/tx.png)

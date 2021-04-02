@@ -23,7 +23,7 @@ class TXDetails extends Component {
         <div class="hl"></div>
         <div class="txd-row">
           <img class="question" src={question} />
-          <h5 class="label">Block:</h5>
+          <h5 class="label">Number:</h5>
         </div>
         <h5 class="block-number">122234</h5>
         <div class="hl"></div>
@@ -51,13 +51,6 @@ class TXDetails extends Component {
           <h5 class="value">Value:</h5>
         </div>
         <div class="from">12 Ether</div>
-
-        <div class="hl"></div>
-        <div class="txd-row">
-          <img class="question" src={question} />
-          <h5 class="value">Volume:</h5>
-        </div>
-        <div class="from">4096 Ether</div>
       </div>
     );
   }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../styles/app.css";
 import TX from "./TX";
 import Block from "./Block";
+import BlockDetails from "./BlockDetails";
 import TXDetails from "./TXDetails";
 
 const tx = {
@@ -44,10 +45,8 @@ class App extends Component {
     return (
       <div>
         {items}
-        <div class="det">
-          <TXDetails />
-          <TXDetails />
-        </div>
+        {/*<TXDetails */}
+        <BlockDetails />
       </div>
     );
   }
