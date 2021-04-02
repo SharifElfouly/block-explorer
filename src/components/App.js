@@ -4,50 +4,64 @@ import TX from "./TX";
 import Block from "./Block";
 import BlockDetails from "./BlockDetails";
 import TXDetails from "./TXDetails";
-
-const tx = {
-  volume: 10.0,
-  fees: 0.19,
-  sz: 4486,
-  root: "0xad95cf8d71a66d372dc5521c5464931021cca8581d334455fea17260dc6e7cd5",
-  hash: "0x46283ad39b1462361afab2620500961f0345cc4aec901b54025000995ec945a4",
-  prev_hash:
-    "0x437cc1ac6da6f1cc24ff8ff0ff6a90c098d87854a3feb45f4dadb9416b6f5e9f",
-  number: 2,
-  n_txs: 4,
-  mined: false,
-  time: 1617202879.796135,
-  txs: [
-    "0x62eb4385598dd21e451c1acf53d27937ea566fc0cf7ef04630be2176264a9c8f",
-    "0xa07e5974255cdf0fa608b5ffc5b5a89d048407351a97af7ec8b4c78ed1755227",
-    "0x8e1b03f81df3502e395537d26684b125b097ac6fb79378ccd8c47af785119723",
-    "0xbbc021a56fcff766f6e4543c0beb09fb734d18a7618b69252170920d094fefb8",
-  ],
-};
-
-const HASH_LENGTH = 18;
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 class App extends Component {
-  render() {
-    const numbers = [...Array(2).keys()];
-    const items = [];
+  state = {
+    blocks: [],
+    txs: [],
+  };
 
-    for (const [index, value] of numbers.entries()) {
-      items.push(
-        <TX
-          hash={tx.hash.substring(0, HASH_LENGTH)}
-          fr={tx.hash.substring(0, HASH_LENGTH)}
-          to={tx.hash.substring(0, HASH_LENGTH)}
-          value={300}
+  componentDidMount() {
+    fetch("http://localhost:5000/blocks")
+      .then((response) => response.json())
+      .then((block) => {
+        this.setState({ blocks: block["blocks"] });
+      });
+
+    fetch("http://localhost:5000/txs")
+      .then((response) => response.json())
+      .then((tx) => {
+        this.setState({ txs: tx["transactions"] });
+      });
+  }
+
+  render() {
+    const blockItems = [];
+    this.state.blocks.forEach(function (block, index) {
+      console.log(block);
+      blockItems.push(
+        <Block
+          number={block.number}
+          hash={block.hash}
+          nTxs={block.n_txs}
+          volume={block.volume}
         />
       );
-    }
+    });
+
+    const txItems = [];
+    this.state.txs.forEach(function (tx, index) {
+      console.log(tx);
+      txItems.push(
+        <TX fr={tx.fr} hash={tx.hash} to={tx.to} value={tx.value} />
+      );
+    });
+
     return (
-      <div>
-        {items}
-        {/*<TXDetails */}
-        <BlockDetails />
-      </div>
+      <Router>
+        <div>
+          <Switch>
+            <Route path="/" exact>
+              <div class="main-lists">
+                <div class="block-items">{blockItems}</div>
+                <div class="txs-items">{txItems}</div>
+              </div>
+            </Route>
+            <Route path="/blocks/:hash" component={BlockDetails} />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }

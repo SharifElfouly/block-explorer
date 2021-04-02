@@ -5,3 +5,15 @@
 .det {
   display: flex;
 }
+
+.block-items {
+  margin-top: 10px;
+}
+
+.txs-items {
+  margin-top: 10px;
+}
+
+.main-lists {
+  display: flex;
+}

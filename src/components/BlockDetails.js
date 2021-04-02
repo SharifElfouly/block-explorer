@@ -4,7 +4,22 @@ import question from "../svgs/question.svg";
 import "../styles/blockdetails.css";
 
 class BlockDetails extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      block: [],
+    };
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:5000/block/" + this.props.match.params.hash)
+      .then((response) => response.json())
+      .then((block) => {
+        this.setState({ block: block });
+      });
+  }
   render() {
+    console.log(this.state.block);
     return (
       <div class="bd">
         <div class="bd-row">
@@ -13,7 +28,7 @@ class BlockDetails extends Component {
             <div class="bd-row-title-label">Block Height:</div>
           </div>
           <div class="bd-row-content" id="bd-row-content-height">
-            12159608
+            {this.state.block.number}
           </div>
         </div>
         <div class="bd-row-divider"></div>
@@ -22,9 +37,7 @@ class BlockDetails extends Component {
             <img class="bd-row-title-question" src={question} />
             <div class="bd-row-title-label">Timestamp:</div>
           </div>
-          <div class="bd-row-content">
-            1 min ago (Apr-02-2021 10:45:11 AM +UTC){" "}
-          </div>
+          <div class="bd-row-content">{this.state.block.time} </div>
         </div>
         <div class="bd-row-divider"></div>
         <div class="bd-row">
@@ -32,7 +45,9 @@ class BlockDetails extends Component {
             <img class="bd-row-title-question" src={question} />
             <div class="bd-row-title-label">Transactions:</div>
           </div>
-          <div class="bd-row-content">348 transactions</div>
+          <div class="bd-row-content">
+            {this.state.block.n_txs} transactions
+          </div>
         </div>
         <div class="bd-row-divider"></div>
         <div class="bd-row">
@@ -41,7 +56,7 @@ class BlockDetails extends Component {
             <div class="bd-row-title-label">Mined by:</div>
           </div>
           <div class="bd-row-content" id="bd-row-content-hash">
-            0xea674fdde714fd979de3edf0f56aa9716b898ec8
+            false
           </div>
         </div>
         <div class="bd-row-divider"></div>
@@ -58,7 +73,7 @@ class BlockDetails extends Component {
             <img class="bd-row-title-question" src={question} />
             <div class="bd-row-title-label">Size:</div>
           </div>
-          <div class="bd-row-content">501234 Bytes</div>
+          <div class="bd-row-content">{this.state.block.sz} Bytes</div>
         </div>
         <div class="bd-row-divider"></div>
         <div class="bd-row">
@@ -77,7 +92,7 @@ class BlockDetails extends Component {
             <div class="bd-row-title-label">Hash:</div>
           </div>
           <div class="bd-row-content" id="bd-row-content-hash">
-            0xea674fdde714fd979de3edf0f56aa9716b898ec8
+            {this.state.block.hash}
           </div>
         </div>
         <div class="bd-row-divider"></div>
@@ -87,7 +102,7 @@ class BlockDetails extends Component {
             <div class="bd-row-title-label">Tx Root:</div>
           </div>
           <div class="bd-row-content" id="bd-row-content-hash">
-            0xea674fdde714fd979de3edf0f56aa9716b898ec8
+            {this.state.block.root}
           </div>
         </div>
       </div>

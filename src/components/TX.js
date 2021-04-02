@@ -2,6 +2,8 @@
 import React, { Component } from "react";
 import "../styles/tx.css";
 
+const HASH_LENGTH = 18;
+
 class TX extends Component {
   render() {
     return (
@@ -12,18 +14,18 @@ class TX extends Component {
           </div>
           <div class="col-1">
             <h4 class="tx-hash">
-              <a>{this.props.hash}</a>
+              <a>{String(this.props.hash).substring(0, HASH_LENGTH)}</a>
             </h4>
             <h4 class="tx-time">2 min ago</h4>
           </div>
           <div class="col-2">
             <h4 class="tx-from">
               <small>FROM </small>
-              {this.props.fr}
+              {String(this.props.fr).substring(0, HASH_LENGTH)}
             </h4>
             <h4 class="tx-to">
               <small>TO </small>
-              {this.props.to}
+              {String(this.props.to).substring(0, HASH_LENGTH)}
             </h4>
           </div>
           <div class="tx-value">

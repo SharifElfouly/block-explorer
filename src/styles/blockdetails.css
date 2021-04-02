@@ -2,9 +2,9 @@
   margin-top: 10px;
   margin-left: 5px;
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
   height: 400px;
-  width: 300px;
+  width: 400px;
   background-color: #223d61;
 }
 
@@ -50,4 +50,13 @@
   background-color: #2b4e79;
   width: 90%;
   height: 2px;
+}
+
+.block-hash {
+  color: #65b5eb;
+  text-decoration: none;
+}
+
+.block-hash:hover {
+  color: #407192;
 }

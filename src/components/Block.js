@@ -1,8 +1,16 @@
 //import React from "react";
 import React, { Component } from "react";
 import "../styles/block.css";
+import { Link } from "react-router-dom";
 
 class Block extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      instructors: [],
+      miner: "0x0",
+    };
+  }
   render() {
     return (
       <div>
@@ -18,13 +26,14 @@ class Block extends Component {
           </div>
           <div class="col-bk-2">
             <h4 class="block-miner">
-              <small>Miner </small>
-              {this.props.miner}
+              <small>Hash </small>
+              <Link to={"/blocks/" + this.props.hash} class="block-hash">
+                {String(this.props.hash).substring(0, 14)}
+              </Link>
             </h4>
             <h4 class="block-txs">
               {this.props.nTxs}
-              <small> txs in 5 secs</small>
-              {this.props.to}
+              <small> txs</small>
             </h4>
           </div>
           <div class="block-volume">
