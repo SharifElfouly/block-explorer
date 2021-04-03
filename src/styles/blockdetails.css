@@ -63,7 +63,7 @@
 
 .bd-isMined-false {
   color: #db190b;
-  background-color: #f1d6d4;
+  background-color: rgba(222, 68, 55, 0.1);
   width: 25px;
   padding-right: 2px;
   padding-left: 2px;

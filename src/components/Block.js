@@ -27,7 +27,7 @@ class Block extends Component {
           <div class="col-bk-2">
             <h4 class="block-miner">
               <small>Hash </small>
-              <Link to={"/blocks/" + this.props.hash} class="block-hash">
+              <Link to={"/block/" + this.props.hash} class="block-hash">
                 {String(this.props.hash).substring(0, 14) + "..."}
               </Link>
             </h4>

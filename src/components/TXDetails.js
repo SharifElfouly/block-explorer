@@ -4,21 +4,52 @@ import question from "../svgs/question.svg";
 import ok from "../svgs/checkOk.svg";
 import "../styles/txdetails.css";
 
+import { BsFillExclamationOctagonFill as FailedIcon } from "react-icons/bs";
+
 class TXDetails extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tx: [],
+    };
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:5000/tx/" + this.props.match.params.hash)
+      .then((response) => response.json())
+      .then((tx) => {
+        this.setState({ tx: tx });
+      });
+  }
+
   render() {
+    var isSigned = this.state.tx.signed;
+    isSigned = false;
     return (
       <div class="main">
         <div class="txd-row">
           <img class="question" src={question} />
           <h5 class="label">Transactions Hash:</h5>
         </div>
-        <div class="hash">0x46283ad39b146236146236146236</div>
+        <div class="hash">{this.state.tx.hash}</div>
         <div class="hl"></div>
         <div class="txd-row status-row">
           <img class="question" src={question} />
-          <h5 class="label">Status:</h5>
-          <img class="ok" src={ok} />
-          <div class="status">Success</div>
+          <h5 class="label">Signed:</h5>
+          {isSigned ? (
+            <div class="bd-isSigned-true">
+              <img class="ok" src={ok} />
+              <div class="status">Yes</div>
+            </div>
+          ) : (
+            <div class="bd-isSigned-false">
+              <FailedIcon
+                class="bd-isSigned-false-icon"
+                style={{ color: "rgb(255, 71, 26)", size: "50px" }}
+              />
+              <div class="bd-isSigned-false-label">No</div>
+            </div>
+          )}
         </div>
         <div class="hl"></div>
         <div class="txd-row">
@@ -31,26 +62,26 @@ class TXDetails extends Component {
           <img class="question" src={question} />
           <h5 class="label">Timestamp:</h5>
         </div>
-        <div class="time">1 min ago (Apr-01-2021 08:12:27 PM +UTC)</div>
+        <div class="time">{this.state.tx.time}</div>
         <div class="hl"></div>
         <div class="txd-row">
           <img class="question" src={question} />
           <h5 class="label">From:</h5>
         </div>
-        <div class="from">0x115706519648957ae137498991345</div>
+        <div class="from">{this.state.tx.fr}</div>
         <div class="hl"></div>
         <div class="txd-row">
           <img class="question" src={question} />
           <h5 class="label">To:</h5>
         </div>
-        <div class="from">0x1234007124805619264394639469f</div>
+        <div class="from">{this.state.tx.to}</div>
 
         <div class="hl"></div>
         <div class="txd-row">
           <img class="question" src={question} />
           <h5 class="value">Value:</h5>
         </div>
-        <div class="from">12 Ether</div>
+        <div class="from">{this.state.tx.value} ether</div>
       </div>
     );
   }

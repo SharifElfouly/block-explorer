@@ -1,8 +1,9 @@
 //import React from "react";
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "../styles/tx.css";
 
-const HASH_LENGTH = 15;
+const HASH_LENGTH = 12;
 
 class TX extends Component {
   render() {
@@ -14,7 +15,9 @@ class TX extends Component {
           </div>
           <div class="col-1">
             <h4 class="tx-hash">
-              <a>{String(this.props.hash).substring(0, HASH_LENGTH)}...</a>
+              <Link to={"/tx/" + this.props.hash} class="block-hash">
+                {String(this.props.hash).substring(0, HASH_LENGTH) + "..."}
+              </Link>
             </h4>
             <h4 class="tx-time">2 min ago</h4>
           </div>

@@ -13,12 +13,29 @@ class App extends Component {
   };
 
   componentDidMount() {
+    this.fetchBlocks();
+    this.fetchTxs();
+  }
+
+  componentDidMount() {
+    this.binterval = setInterval(() => this.fetchBlocks(), 3000);
+    this.tinterval = setInterval(() => this.fetchTxs(), 3000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.binterval);
+    clearInterval(this.tinterval);
+  }
+
+  fetchBlocks() {
     fetch("http://localhost:5000/blocks")
       .then((response) => response.json())
       .then((block) => {
         this.setState({ blocks: block["blocks"] });
       });
+  }
 
+  fetchTxs() {
     fetch("http://localhost:5000/txs")
       .then((response) => response.json())
       .then((tx) => {
@@ -58,7 +75,8 @@ class App extends Component {
                 <div class="txs-items">{txItems}</div>
               </div>
             </Route>
-            <Route path="/blocks/:hash" component={BlockDetails} />
+            <Route path="/block/:hash" component={BlockDetails} />
+            <Route path="/tx/:hash" component={TXDetails} />
           </Switch>
         </div>
       </Router>
