@@ -2,12 +2,14 @@
 import React, { Component } from "react";
 import question from "../svgs/question.svg";
 import "../styles/blockdetails.css";
+import { Link } from "react-router-dom";
 
 class BlockDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
       block: [],
+      txs: [],
     };
   }
 
@@ -15,11 +17,12 @@ class BlockDetails extends Component {
     fetch("http://localhost:5000/block/" + this.props.match.params.hash)
       .then((response) => response.json())
       .then((block) => {
-        this.setState({ block: block });
+        this.setState({ block: block, txs: block.txs });
       });
   }
   render() {
     var isMined = this.state.block.mined;
+
     return (
       <div class="bd">
         <div class="bd-row">
@@ -64,7 +67,7 @@ class BlockDetails extends Component {
         <div class="bd-row">
           <div class="bd-row-title">
             <img class="bd-row-title-question" src={question} />
-            <div class="bd-row-title-label">Transactions:</div>
+            <div class="bd-row-title-label">Number Transactions:</div>
           </div>
           <div class="bd-row-content">
             {this.state.block.n_txs} transactions
@@ -115,6 +118,27 @@ class BlockDetails extends Component {
             </div>
           </div>
         )}
+        <div class="bd-row-divider"></div>
+        <div class="bd-row">
+          <div class="bd-row-title">
+            <img class="bd-row-title-question" src={question} />
+            <div class="bd-row-title-label">Transactions:</div>
+          </div>
+          <div class="bd-row-txs-content" id="bd-row-content-hash">
+            <ul>
+              {this.state.txs.map((tx, index) => {
+                return (
+                  <div>
+                    <Link to={"/tx/" + tx} class="block-hash">
+                      <span style={{ color: "white" }}>- </span>
+                      {tx}
+                    </Link>
+                  </div>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }

@@ -12,14 +12,16 @@ class App extends Component {
     txs: [],
   };
 
+  /** componentDidMount() {
+    this.fetchBlocks();
+    this.fetchTxs();
+  }*/
+
   componentDidMount() {
     this.fetchBlocks();
     this.fetchTxs();
-  }
-
-  componentDidMount() {
     this.binterval = setInterval(() => this.fetchBlocks(), 3000);
-    this.tinterval = setInterval(() => this.fetchTxs(), 3000);
+    this.tinterval = setInterval(() => this.fetchTxs(), 10000);
   }
 
   componentWillUnmount() {
@@ -27,15 +29,15 @@ class App extends Component {
     clearInterval(this.tinterval);
   }
 
-  fetchBlocks() {
+  async fetchBlocks() {
     fetch("http://localhost:5000/blocks")
       .then((response) => response.json())
       .then((block) => {
-        this.setState({ blocks: block["blocks"] });
+        this.setState({ blocks: block["blocks"].reverse() });
       });
   }
 
-  fetchTxs() {
+  async fetchTxs() {
     fetch("http://localhost:5000/txs")
       .then((response) => response.json())
       .then((tx) => {
@@ -46,7 +48,7 @@ class App extends Component {
   render() {
     const blockItems = [];
     this.state.blocks.forEach(function (block, index) {
-      console.log(block);
+      //console.log(block);
       blockItems.push(
         <Block
           number={block.number}
@@ -59,7 +61,7 @@ class App extends Component {
 
     const txItems = [];
     this.state.txs.forEach(function (tx, index) {
-      console.log(tx);
+      //console.log(tx);
       txItems.push(
         <TX fr={tx.fr} hash={tx.hash} to={tx.to} value={tx.value} />
       );

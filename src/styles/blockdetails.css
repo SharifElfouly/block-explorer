@@ -3,8 +3,8 @@
   margin-left: 5px;
   padding-top: 10px;
   padding-bottom: 10px;
-  height: 400px;
-  width: 450px;
+  height: 500px;
+  width: 480px;
   background-color: #223d61;
 }
 
@@ -48,7 +48,7 @@
   margin-left: 10px;
   margin-bottom: 5px;
   background-color: #2b4e79;
-  width: 90%;
+  width: 95%;
   height: 2px;
 }
 
@@ -77,4 +77,12 @@
   padding-left: 2px;
   width: 23px;
   border-radius: 10%;
+}
+
+.bd-row-txs-content {
+  margin-left: -32px;
+}
+
+.bd-txs-hash {
+  margin-bottom: 5px;
 }
