@@ -1,4 +1,5 @@
 # Block Explorer
+
 > Design inspired by [etherscan.io](etherscan.io/)
 
 Explore the blockchain that you can build yourself [from-scratch](https://github.com/SharifElfouly/blockchain-from-scratch/).
@@ -16,3 +17,7 @@ Simple react components for looking at blocks and their transactions.
 #### Transaction
 
 ![Screenshot](images/tx.png)
+
+##### Transaction Details
+
+![Screenshot](images/tx-details.png)
