@@ -1,22 +1,21 @@
 import React, { Component } from "react";
 import "../styles/app.css";
-import TX from "./TX";
 import Block from "./Block";
 import BlockDetails from "./BlockDetails";
 import TXDetails from "./TXDetails";
+import Account from "./Account";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+const URL = "http://localhost:5000/";
 
 class App extends Component {
   state = {
     blocks: [],
-    txs: [],
   };
 
   componentDidMount() {
     this.fetchBlocks();
-    this.fetchTxs();
-    this.binterval = setInterval(() => this.fetchBlocks(), 100000);
-    this.tinterval = setInterval(() => this.fetchTxs(), 100000);
+    this.binterval = setInterval(() => this.fetchBlocks(), 1000);
   }
 
   componentWillUnmount() {
@@ -25,32 +24,22 @@ class App extends Component {
   }
 
   async fetchBlocks() {
-    fetch("http://localhost:5000/blocks")
+    fetch(URL + "blocks")
       .then((response) => response.json())
       .then((block) => {
-        let parsedTxs = [];
-        JSON.parse(block["blocks"]).forEach((item) => {
-          console.log(JSON.parse(item));
-          parsedTxs.push(JSON.parse(item));
+        let parsedBlocks = [];
+        JSON.parse(block["blocks"]).forEach((block) => {
+          parsedBlocks.push(JSON.parse(block));
         });
         this.setState({
-          blocks: parsedTxs,
+          blocks: parsedBlocks,
         });
-      });
-  }
-
-  async fetchTxs() {
-    fetch("http://localhost:5000/txs")
-      .then((response) => response.json())
-      .then((tx) => {
-        this.setState({ txs: tx["transactions"] });
       });
   }
 
   render() {
     const blockItems = [];
-    this.state.blocks.forEach(function (block, index) {
-      //console.log(block);
+    this.state.blocks.forEach((block) => {
       blockItems.push(
         <Block
           number={block.number}
@@ -61,22 +50,14 @@ class App extends Component {
       );
     });
 
-    const txItems = [];
-    this.state.txs.forEach(function (tx, index) {
-      //console.log(tx);
-      txItems.push(
-        <TX fr={tx.fr} hash={tx.hash} to={tx.to} value={tx.value} />
-      );
-    });
-
     return (
       <Router>
         <div class="main-content">
+          <Account></Account>
           <Switch>
             <Route path="/" exact>
               <div class="main-lists">
                 <div class="block-items">{blockItems}</div>
-                {/*<div class="txs-items">{txItems}</div>*/}
               </div>
             </Route>
             <Route path="/block/:hash" component={BlockDetails} />

@@ -6,10 +6,6 @@ import { Link } from "react-router-dom";
 class Block extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      instructors: [],
-      miner: "0x0",
-    };
   }
   render() {
     return (
