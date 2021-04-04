@@ -12,16 +12,11 @@ class App extends Component {
     txs: [],
   };
 
-  /** componentDidMount() {
-    this.fetchBlocks();
-    this.fetchTxs();
-  }*/
-
   componentDidMount() {
     this.fetchBlocks();
     this.fetchTxs();
-    this.binterval = setInterval(() => this.fetchBlocks(), 3000);
-    this.tinterval = setInterval(() => this.fetchTxs(), 10000);
+    this.binterval = setInterval(() => this.fetchBlocks(), 100000);
+    this.tinterval = setInterval(() => this.fetchTxs(), 100000);
   }
 
   componentWillUnmount() {
@@ -33,7 +28,14 @@ class App extends Component {
     fetch("http://localhost:5000/blocks")
       .then((response) => response.json())
       .then((block) => {
-        this.setState({ blocks: block["blocks"].reverse() });
+        let parsedTxs = [];
+        JSON.parse(block["blocks"]).forEach((item) => {
+          console.log(JSON.parse(item));
+          parsedTxs.push(JSON.parse(item));
+        });
+        this.setState({
+          blocks: parsedTxs,
+        });
       });
   }
 
@@ -74,11 +76,11 @@ class App extends Component {
             <Route path="/" exact>
               <div class="main-lists">
                 <div class="block-items">{blockItems}</div>
-                <div class="txs-items">{txItems}</div>
+                {/*<div class="txs-items">{txItems}</div>*/}
               </div>
             </Route>
             <Route path="/block/:hash" component={BlockDetails} />
-            <Route path="/tx/:hash" component={TXDetails} />
+            <Route path="/tx/:block_number/:hash" component={TXDetails} />
           </Switch>
         </div>
       </Router>

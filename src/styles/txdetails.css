@@ -3,7 +3,7 @@
   margin-left: 10px;
   padding-top: 5px;
   padding-left: 10px;
-  padding-bottom: 5px;
+  padding-bottom: 15px;
   background-color: #223d61;
   font-family: Helvetica;
   font-size: 12px;
@@ -57,12 +57,12 @@
 .hash {
   padding-bottom: ;
   margin-left: 2px;
-  color: white;
+  color: #3b9ee0;
   margin-top: -7px;
 }
 
 .from {
-  color: white;
+  color: #65b5eb;
   margin-top: -8px;
   margin-left: 1px;
   padding-bottom: 10px;

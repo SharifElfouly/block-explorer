@@ -22,6 +22,7 @@ class BlockDetails extends Component {
   }
   render() {
     var isMined = this.state.block.mined;
+    var d = new Date(this.state.block.time * 1000);
 
     return (
       <div class="bd">
@@ -61,13 +62,13 @@ class BlockDetails extends Component {
             <img class="bd-row-title-question" src={question} />
             <div class="bd-row-title-label">Timestamp:</div>
           </div>
-          <div class="bd-row-content">{this.state.block.time} </div>
+          <div class="bd-row-content">{d.toString()} </div>
         </div>
         <div class="bd-row-divider"></div>
         <div class="bd-row">
           <div class="bd-row-title">
             <img class="bd-row-title-question" src={question} />
-            <div class="bd-row-title-label">Number Transactions:</div>
+            <div class="bd-row-title-label">Number:</div>
           </div>
           <div class="bd-row-content">
             {this.state.block.n_txs} transactions
@@ -96,15 +97,7 @@ class BlockDetails extends Component {
                 <img class="bd-row-title-question" src={question} />
                 <div class="bd-row-title-label">Block Reward:</div>
               </div>
-              <div class="bd-row-content">3.92947386687227019 Ether</div>
-            </div>
-            <div class="bd-row-divider"></div>
-            <div class="bd-row">
-              <div class="bd-row-title">
-                <img class="bd-row-title-question" src={question} />
-                <div class="bd-row-title-label">Size:</div>
-              </div>
-              <div class="bd-row-content">{this.state.block.sz} Bytes</div>
+              <div class="bd-row-content">{this.state.block.reward} Ether</div>
             </div>
             <div class="bd-row-divider"></div>
             <div class="bd-row">
@@ -113,7 +106,7 @@ class BlockDetails extends Component {
                 <div class="bd-row-title-label">Difficulty:</div>
               </div>
               <div class="bd-row-content" id="bd-row-content-hash">
-                2
+                {this.state.block.diff}
               </div>
             </div>
           </div>
@@ -129,9 +122,17 @@ class BlockDetails extends Component {
               {this.state.txs.map((tx, index) => {
                 return (
                   <div>
-                    <Link to={"/tx/" + tx} class="block-hash">
+                    <Link
+                      to={
+                        "/tx/" +
+                        this.state.block.number +
+                        "/" +
+                        JSON.parse(tx).hash
+                      }
+                      class="block-hash"
+                    >
                       <span style={{ color: "white" }}>- </span>
-                      {tx}
+                      {JSON.parse(tx).hash}
                     </Link>
                   </div>
                 );

@@ -15,16 +15,21 @@ class TXDetails extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:5000/tx/" + this.props.match.params.hash)
+    fetch(
+      "http://localhost:5000/tx/" +
+        this.props.match.params.block_number +
+        "/" +
+        this.props.match.params.hash
+    )
       .then((response) => response.json())
       .then((tx) => {
-        this.setState({ tx: tx });
+        console.log(JSON.parse(tx.tx));
+        this.setState({ tx: JSON.parse(tx.tx) });
       });
   }
 
   render() {
     var isSigned = this.state.tx.signed;
-    isSigned = false;
     return (
       <div class="main">
         <div class="txd-row">
@@ -81,7 +86,7 @@ class TXDetails extends Component {
           <img class="question" src={question} />
           <h5 class="value">Value:</h5>
         </div>
-        <div class="from">{this.state.tx.value} ether</div>
+        <div class="value">{this.state.tx.value} ether</div>
       </div>
     );
   }
