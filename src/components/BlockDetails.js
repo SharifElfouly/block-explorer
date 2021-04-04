@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import question from "../svgs/question.svg";
 import "../styles/blockdetails.css";
 import { Link } from "react-router-dom";
+import TX from "./TX";
 
 class BlockDetails extends Component {
   constructor(props) {
@@ -122,18 +123,13 @@ class BlockDetails extends Component {
               {this.state.txs.map((tx, index) => {
                 return (
                   <div>
-                    <Link
-                      to={
-                        "/tx/" +
-                        this.state.block.number +
-                        "/" +
-                        JSON.parse(tx).hash
-                      }
-                      class="block-hash"
-                    >
-                      <span style={{ color: "white" }}>- </span>
-                      {JSON.parse(tx).hash}
-                    </Link>
+                    <TX
+                      number={this.state.block.number}
+                      hash={JSON.parse(tx).hash}
+                      fr={JSON.parse(tx).fr}
+                      to={JSON.parse(tx).to}
+                      value={JSON.parse(tx).value}
+                    ></TX>
                   </div>
                 );
               })}

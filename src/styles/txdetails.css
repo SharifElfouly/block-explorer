@@ -7,7 +7,6 @@
   background-color: #223d61;
   font-family: Helvetica;
   font-size: 12px;
-  width: 40%;
   font-weight: 10px;
   width: 450px;
 }
@@ -55,13 +54,13 @@
 }
 
 .hash {
-  padding-bottom: ;
   margin-left: 2px;
   color: #3b9ee0;
   margin-top: -7px;
 }
 
 .from {
+  text-decoration: none;
   color: #65b5eb;
   margin-top: -8px;
   margin-left: 1px;

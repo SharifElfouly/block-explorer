@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../styles/tx.css";
 
-const HASH_LENGTH = 12;
+const HASH_LENGTH = 17;
 
 class TX extends Component {
   render() {
@@ -15,7 +15,10 @@ class TX extends Component {
           </div>
           <div class="col-1">
             <h4 class="tx-hash">
-              <Link to={"/tx/" + this.props.hash} class="block-hash">
+              <Link
+                to={"/tx/" + this.props.number + "/" + this.props.hash}
+                class="block-hash"
+              >
                 {String(this.props.hash).substring(0, HASH_LENGTH) + "..."}
               </Link>
             </h4>
@@ -24,11 +27,15 @@ class TX extends Component {
           <div class="col-2">
             <h4 class="tx-from">
               <small>FROM </small>
-              {String(this.props.fr).substring(0, HASH_LENGTH)}...
+              <Link class="tx-from" to={"/acc/" + this.props.fr}>
+                {this.props.fr.substring(0, HASH_LENGTH)}...
+              </Link>
             </h4>
             <h4 class="tx-to">
               <small>TO </small>
-              {String(this.props.to).substring(0, HASH_LENGTH)}...
+              <Link class="tx-to" to={"/acc/" + this.props.to}>
+                {this.props.to.substring(0, HASH_LENGTH)}...
+              </Link>
             </h4>
           </div>
           <div class="tx-value">

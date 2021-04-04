@@ -5,6 +5,7 @@ import ok from "../svgs/checkOk.svg";
 import "../styles/txdetails.css";
 
 import { BsFillExclamationOctagonFill as FailedIcon } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 class TXDetails extends Component {
   constructor(props) {
@@ -73,13 +74,21 @@ class TXDetails extends Component {
           <img class="question" src={question} />
           <h5 class="label">From:</h5>
         </div>
-        <div class="from">{this.state.tx.fr}</div>
+        <div class="from">
+          <Link class="from" to={"/acc/" + this.state.tx.fr}>
+            {this.state.tx.fr}
+          </Link>
+        </div>
         <div class="hl"></div>
         <div class="txd-row">
           <img class="question" src={question} />
           <h5 class="label">To:</h5>
         </div>
-        <div class="from">{this.state.tx.to}</div>
+        <div class="from">
+          <Link class="from" to={"/acc/" + this.state.tx.to}>
+            {this.state.tx.to}
+          </Link>
+        </div>
 
         <div class="hl"></div>
         <div class="txd-row">

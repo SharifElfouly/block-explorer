@@ -80,7 +80,8 @@
 }
 
 .bd-row-txs-content {
-  margin-left: -32px;
+  margin-left: -84px;
+  width: 100%;
 }
 
 .bd-txs-hash {

@@ -53,7 +53,6 @@ class App extends Component {
     return (
       <Router>
         <div class="main-content">
-          <Account></Account>
           <Switch>
             <Route path="/" exact>
               <div class="main-lists">
@@ -61,6 +60,7 @@ class App extends Component {
               </div>
             </Route>
             <Route path="/block/:hash" component={BlockDetails} />
+            <Route path="/acc/:hash" component={Account} />
             <Route path="/tx/:block_number/:hash" component={TXDetails} />
           </Switch>
         </div>
