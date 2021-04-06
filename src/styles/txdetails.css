@@ -112,3 +112,9 @@
   padding-bottom: 2px;
   height: 13px;
 }
+
+.nonce {
+  color: white;
+  margin-top: 16px;
+  margin-left: 10px;
+}

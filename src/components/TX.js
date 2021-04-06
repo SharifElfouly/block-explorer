@@ -7,6 +7,12 @@ const HASH_LENGTH = 17;
 
 class TX extends Component {
   render() {
+    if (typeof this.props.number !== undefined) {
+      var tx_link = "/tx/" + this.props.number + "/" + this.props.hash;
+    } else {
+      var tx_link = "/tx/" + this.props.hash;
+    }
+
     return (
       <div>
         <div class="tx-row">
@@ -15,10 +21,7 @@ class TX extends Component {
           </div>
           <div class="col-1">
             <h4 class="tx-hash">
-              <Link
-                to={"/tx/" + this.props.number + "/" + this.props.hash}
-                class="block-hash"
-              >
+              <Link to={tx_link} class="block-hash">
                 {String(this.props.hash).substring(0, HASH_LENGTH) + "..."}
               </Link>
             </h4>

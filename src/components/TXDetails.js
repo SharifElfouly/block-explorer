@@ -16,12 +16,23 @@ class TXDetails extends Component {
   }
 
   componentDidMount() {
-    fetch(
-      "http://localhost:5000/tx/" +
-        this.props.match.params.block_number +
+    var blockNumber = this.props.match.params.block_number;
+
+    if (blockNumber) {
+      var tx_link =
+        "http://localhost:5000/tx/" +
+        blockNumber +
         "/" +
-        this.props.match.params.hash
-    )
+        this.props.match.params.hash;
+    }
+
+    if (blockNumber == "undefined") {
+      var tx_link =
+        "http://localhost:5000/tx_pool/" + this.props.match.params.hash;
+    }
+
+    console.log(tx_link);
+    fetch(tx_link)
       .then((response) => response.json())
       .then((tx) => {
         console.log(JSON.parse(tx.tx));
@@ -96,6 +107,13 @@ class TXDetails extends Component {
           <h5 class="value">Value:</h5>
         </div>
         <div class="value">{this.state.tx.value} ether</div>
+
+        <div class="hl"></div>
+        <div class="txd-row">
+          <img class="question" src={question} />
+          <h5 class="value">Nonce:</h5>
+          <div class="nonce">{this.state.tx.nonce}</div>
+        </div>
       </div>
     );
   }
